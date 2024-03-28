@@ -1,0 +1,5 @@
+# pg_linux_stats extension
+comment = 'run XXstat command on Linux'
+default_version = '1.0'
+module_pathname = '$libdir/pg_linux_stats'
+relocatable = true
