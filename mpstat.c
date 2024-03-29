@@ -63,17 +63,15 @@ get_mpstat(List *mpstat)
 			mpstat = lappend(mpstat, ms);
 		}
 
-		if (strlen(buffer) < 66)
-			continue;
-		else if (sscanf(buffer, "%s %s", dummy1, dummy2))
+		if (reading == false)
 		{
-			if (strncmp(dummy2, "CPU", 3) == 0)
-			{
-				reading = true;
+			if (strlen(buffer) < 66)
 				continue;
-			}
+			if (sscanf(buffer, "%s %s", dummy1, dummy2) < 2)
+				continue;
+			if (strncmp(dummy2, "CPU", 3) == 0)
+				reading = true;
 		}
-
 	}
 
 
