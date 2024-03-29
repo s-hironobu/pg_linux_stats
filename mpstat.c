@@ -32,13 +32,10 @@ get_mpstat(List *mpstat)
 	while (fgets(buffer, sizeof(buffer), fp) != NULL)
 	{
 		MpStat	   *ms;
-		char dummy1[16];
-		char dummy2[16];
+		char		dummy1[16];
+		char		dummy2[16];
 
-		/*
-		 * strlen("CPU %usr %nice %sys %iowait %irq %soft %steal %guest %gnice %idle") => 66
-		 */
-		if (reading == true && strlen(buffer) > 66)
+		if (reading == true)
 		{
 			ms = (MpStat *) palloc0(sizeof(MpStat));
 
@@ -62,9 +59,11 @@ get_mpstat(List *mpstat)
 
 			mpstat = lappend(mpstat, ms);
 		}
-
-		if (reading == false)
+		else					/* reading == false */
 		{
+			/*--
+			 * strlen("CPU %usr %nice %sys %iowait %irq %soft %steal %guest %gnice %idle") = 66
+			 */
 			if (strlen(buffer) < 66)
 				continue;
 			if (sscanf(buffer, "%s %s", dummy1, dummy2) < 2)
