@@ -1,6 +1,6 @@
 # pg_linux_stats
 
-`pg_linux_stats` is a set of PostgreSQL functions that provides information similar to the Linux commands vmstat, iostat, and netstat.
+`pg_linux_stats` is a set of PostgreSQL functions that provides information similar to the Linux commands vmstat, iostat, netstat and mpstat.
 
 It was developed to simplify OS statistics monitoring without requiring the use of heavyweight solutions like Zabbix and Prometheus.
 
@@ -31,6 +31,16 @@ After starting your server, you must issue `CREATE EXTENSION` statement shown be
 ```
 postgres=# CREATE EXTENSION pg_linux_stats;
 ```
+
+
+The `sysstat` module is required for `mpstat` command  on some Linux distributions.
+
+Installation:
+
+```
+$ sudo apt install sysstat
+```
+
 
 ## How to use
 
