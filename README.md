@@ -4,6 +4,8 @@
 
 It was developed to simplify OS statistics monitoring without requiring the use of heavyweight solutions like Zabbix and Prometheus.
 
+This extension supports PostgreSQL versions 16 and 17.
+
 ### Limitation
 
 `pg_linux_stats` can only run on Linux.
@@ -109,4 +111,5 @@ testdb=# select * from pg_free();
 ```
 
 ## Change Log
+ - 16 Sep, 2024: Supported PG17.
  - 28 Mar, 2024: Version 1.0 Released.
